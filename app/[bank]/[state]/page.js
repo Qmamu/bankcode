@@ -1,5 +1,11 @@
 // app/[bank]/[state]/page.js
-import { loadEntries, getAllBanks, getMostFrequentBankName, toSlug, fromSlug } from "@/lib/ifscUtils";
+import {
+  loadEntries,
+  getAllBanks,
+  getMostFrequentBankName,
+  toSlug,
+  fromSlug,
+} from "@/lib/ifscUtils";
 import { redirect, notFound } from "next/navigation";
 
 export async function generateStaticParams() {
@@ -14,7 +20,7 @@ export async function generateStaticParams() {
     for (const s of states) {
       paramsArr.push({
         bank: b,
-        state: toSlug(s) // e.g. "andhra-pradesh"
+        state: toSlug(s), // e.g. "andhra-pradesh"
       });
     }
   }
@@ -32,7 +38,9 @@ export default function StatePage({ params }) {
   // decode the slug "andhra-pradesh" => "ANDHRA PRADESH"
   const realState = fromSlug(state);
 
-  const filtered = all.filter((e) => e.STATE?.toLowerCase() === realState.toLowerCase());
+  const filtered = all.filter(
+    (e) => e.STATE?.toLowerCase() === realState.toLowerCase()
+  );
   if (!filtered.length) {
     notFound();
   }
@@ -71,9 +79,10 @@ export async function generateMetadata({ params }) {
   const realState = fromSlug(state);
   return {
     title: `Bank: ${bank} | State: ${realState}`,
-    description: `Choose a city for bank ${bank} in state ${realState}.`
+    description: `Choose a city for bank ${bank} in state ${realState}.`,
   };
 }
+
 
 // import { loadEntries, getMostFrequentBankName } from "@/lib/ifscUtils";
 // import { redirect, notFound } from "next/navigation";
