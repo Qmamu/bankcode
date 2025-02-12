@@ -1,10 +1,15 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
+#VScode
+.VScode
+.vscode
+/.vscode/
+
 # dependencies
 /node_modules
+/package-lock.json
 /.pnp
 .pnp.js
-.yarn/install-state.gz
 
 # testing
 /coverage
@@ -24,13 +29,16 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+.pnpm-debug.log*
 
 # local env files
+.env
 .env*.local
 
 # vercel
 .vercel
 
-# typescript
-*.tsbuildinfo
-next-env.d.ts
+# public sitemap
+/public/robots.txt
+/public/sitemap.xml
+/public/sitemap-*.xml
